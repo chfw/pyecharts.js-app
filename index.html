@@ -6,7 +6,7 @@
 	  <script type="text/javascript" src="public/js/ace.js" charset="utf-8"></script>
       <script type="text/javascript" src="public/prd/scripts.min.js" charset="utf-8"></script>
 	  <link rel="stylesheet" type="text/css" href="public/prd/style.min.css">	
-	  <title>Practice pyecharts in browser</title>
+	  <title>Experience pyecharts in browser</title>
       <style>
         custom-north {
             padding: 0;
@@ -16,7 +16,7 @@
   <body>
     <div class="ui-layout-north custom-north">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Pyecharts in Browser</a>
+		<a class="navbar-brand" href="#">体验pyecharts - Experience pyecharts</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -24,7 +24,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		  <ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-			  <a class="nav-link" href="#" id="run">Run <span class="sr-only">(current)</span></a>
+			  <a class="nav-link" href="#" id="run">运行 - Run</a>
 			</li>
 		  </ul>
 		  <a class="navbar-brand" href="https://github.com/chfw/pyecharts.js">pyecharts.js</a>
@@ -62,9 +62,9 @@ request.bind('complete', on_complete)
 url = window.location.hash[1:]
 if 'http' not in url:
     url = url + '/'
-request.open('GET', url, True)
-request.send()
-console.log(window.location.hash)
+if len(url) > 1:
+    request.open('GET', url, True)
+    request.send()
     </script>
   </body>
 </html>

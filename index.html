@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+	  <script type="text/javascript" src="public/js/ace.js" charset="utf-8"></script>
+      <script type="text/javascript" src="public/prd/scripts.min.js" charset="utf-8"></script>
+	  <link rel="stylesheet" type="text/css" href="public/prd/style.min.css">	
+	  <title>Practice pyecharts in browser</title>
+      <style>
+        custom-north {
+            padding: 0;
+        };
+      </style>
+  </head>
+  <body>
+    <div class="ui-layout-north custom-north">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Pyecharts in Browser</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+			  <a class="nav-link" href="#" id="run">Run <span class="sr-only">(current)</span></a>
+			</li>
+		  </ul>
+		  <a class="navbar-brand" href="https://github.com/chfw/pyecharts.js">pyecharts.js</a>
+		</div>
+	</nav>
+    </div>
+	  <div id='drawme' class="ui-layout-center custom-center">
+	    <div id='me'></div>
+	  </div>
+	  <div class="ui-layout-west custom-north">
+	    <div id="editor" >from pyecharts import Map
+
+value = [95.1, 23.2, 43.3, 66.4, 88.5]
+attr= ["China", "Canada", "Brazil", "Russia", "United States"]
+map = Map("World Map Example", width=1200, height=600)
+map.add("", attr, value, maptype="world", is_visualmap=True, visual_text_color='#000')
+map.render()</div>
+	  </div>
+	  <div id='version' style="display:none"></div>
+	  <textarea id='console' cols=50 rows=10 style="display:none"></textarea>
+	<!-- this line demonstrates that script.py can be included as any javascript files -->
+	<script type="text/python">
+from browser import document as doc, alert, ajax, window, console
+import editor
+
+
+def on_complete(response):
+    content = response.text
+    content += "\ncreate_charts().render()\n"
+    editor.editor.setValue(content, -1)
+
+doc['run'].bind('click', editor.run)
+request = ajax.ajax()
+request.bind('complete', on_complete)
+url = window.location.hash[1:]
+if 'http' not in url:
+    url = url + '/'
+request.open('GET', url, True)
+request.send()
+console.log(window.location.hash)
+    </script>
+  </body>
+</html>

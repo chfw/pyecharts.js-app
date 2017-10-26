@@ -3,9 +3,9 @@ $(document).ready(function () {
   var url = document.URL;
   var python_path;
   if(url.indexOf('chfw.github.io') != -1){
-    python_path = ['/bryecharts/','/bryecharts/public/python'];
+    python_path = ['/pyecharts.js-app/public/python'];
   }else{
-    python_path = ['/', 'public/python' ];
+    python_path = ['public/python'];
   }
   brython({"pythonpath": python_path});
   var editor = ace.edit("editor");
